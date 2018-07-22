@@ -1,0 +1,28 @@
+<!DOCTYPR html>
+<html lang="zh-cn">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE-Edge">
+    <meta charset = "utf-8">
+    <title>{% block title %}栏目管理{% endblock  %}</title>
+    <link rel="stylesheet" href="http://necolas.github.io/normalize.css/">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      {% include "article/header.html"  %}
+      <div class="col-md-2">
+	{% include "article/leftslider.html"  %}
+      </div>
+      <div class="col-md-10">
+      {% block content  %}
+      {% endblock %}
+      </div>
+      
+
+    </div>
+    {% include "footer.html"  %}
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+     {% block javascript  %}{% endblock  %} 
+  </body>
+</html>

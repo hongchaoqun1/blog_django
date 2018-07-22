@@ -1,0 +1,21 @@
+{% extends "article/base.html"  %}
+{% load staticfiles  %}
+{% block title %}{{ article.title }}{% endblock  %}
+{% block content %}
+<div>
+<h1>{{ article.title }}</h1>
+<p>
+    <a href="#">{{ article.author.username }}</a>
+    <span style="margin-left: 20px">{{ total_views }}</span>
+</p>
+<p>{{ article.body }}</p>
+</div>
+
+{{ most_viewed }}
+
+{% endblock  %}
+
+{% block javascript  %}
+
+
+{% endblock  %}

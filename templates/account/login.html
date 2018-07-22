@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %} Login {% endblock  %}
+
+{% block content %}
+
+<div class="row text-center vertical-middle-sm">
+  <h1>Login</h1>
+  <p>Input your username and password</p>
+
+  <!--表单 -->
+  <form class="form-horizontal" role="form" method="POST">
+    {% csrf_token  %}
+    <div class="form-group">
+      <label for="{{ form.username.id_for_name }}" class="col-md-5 control-label">姓名</label>
+      <div class="col-md-6 text-left">
+        <span class="glyphicon glyphicon-user"></span>	
+          {{ form.username  }}
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="{{ form.password.id_for_name }}" class="col-md-5 control-label">密码</label>
+      <div class="col-md-6 text-left">
+	<span class="glyphicon glyphicon-user"></span>
+          {{ form.password  }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-6 text-right">
+	<button type="submit" class="btn btn-default">登录</button>
+      </div>
+      <div class="col-md-5 text-left">
+	<div class="checkbox">
+	  <label>
+	    <input type="checkbox"> 请记住我
+	  </label>
+	</div>
+      </div>
+      
+    </div>
+  </form>
+
+
+
+
+</div>
+{% endblock  %}

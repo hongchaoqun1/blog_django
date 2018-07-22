@@ -1,0 +1,10 @@
+from django.contrib.auth import urls
+from django.conf import settings
+
+from . import views
+
+app_name = "blog"
+urlpatterns = [
+   url(r'^login/$', views.user_login)
+]
+

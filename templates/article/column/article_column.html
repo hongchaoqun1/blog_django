@@ -1,0 +1,148 @@
+{% extends "article/base.html"  %}
+{% load staticfiles  %}
+{% block title %}{% endblock  %}
+{% block content %}
+<div>
+<p class="text-right">
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" >add column</button>
+</p>
+<table class="table table-hover">
+  <tr>
+    <td>序号</td>
+    <td>栏目名称</td>
+    <td>操作</td>
+  </tr>
+  <tr>
+    {% for col in column  %}
+  <tr>
+    <td>{{ forloop.counter  }}<input type="hidden" value="{{ col.id }}" id="col_id"></td>
+    <td>{{ col.column  }}</td>
+    <td><a href="#" id="exit" data-toggle="modal" data-target="#myModal_exit"><span class="glyphicon glyphicon-pencil"></span></a> <a href="#" id="del" data-toggle="modal" data-target="#myModal_del"><span class="glyphicon glyphicon-trash"></span></a></td>
+  </tr>
+  {% empty %}
+  <p>太懒了, 还没有设置栏目</p>
+    {% endfor  %}
+  </tr>
+</table>
+</div>
+
+<!-- 新增模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h4 class="modal-title" id="myModalLabel">添加栏目</h4>
+      </div>
+      <div class="modal-body">
+      <input type="text" class="form-control" id="name" placeholder="请输入名称" name="column_name">
+      </div>
+      <div class="modal-footer">
+	<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	<button type="button" class="btn btn-primary" id="add">提交更改</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal -->
+  </div>
+
+<!-- 修改模态框 -->
+<div class="modal fade" id="myModal_exit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h4 class="modal-title" id="myModalLabel_e">修改栏目</h4>
+      </div>
+      <div class="modal-body">
+      <input type="text" class="form-control" id="exit_name" placeholder="请输入名称" name="column_name">
+      </div>
+      <div class="modal-footer">
+	<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	<button type="button" class="btn btn-primary" id="exit_sub">提交更改</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal -->
+  </div>
+
+
+<!-- 删除模态框 -->
+<div class="modal fade" id="myModal_del" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h4 class="modal-title" id="myModalLabel_d">删除栏目</h4>
+      </div>
+      <div class="modal-body">
+      <span>确定删除</span>
+      </div>
+      <div class="modal-footer">
+	<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	<button type="button" class="btn btn-primary" id="del">确认删除</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal -->
+  </div>
+{% endblock  %}
+
+{% block javascript  %}
+<script>
+  $(function(){
+    // 提交新的列
+    $("#add").click(function(){
+      var a = $("#name").val();
+      var form = new FormData();
+      form.append("column_name", a);
+      $.ajax({
+        type: "POST",
+        url: 'http://127.0.0.1:8000/article/article-column/',
+        data: form,
+        processData: false,
+        contentType: false,
+        success: function(data){
+           if (data==1){
+             alert("不可以为空");
+           }else if(data==2){
+             alert("已经存在")
+           }else{
+             alert("ok")
+             location.href="http://127.0.0.1:8000/article/article-column/"
+           }
+        }
+      })
+    })
+  })
+
+// 修改新的列
+$(function(){
+  $("#exit_sub").click(function(){
+      
+      var old_id = $("#col_id").val();
+      var new_name = $("#exit_name").val();
+      var form = new FormData();
+      form.append("new_name", new_name);
+      form.append("old_id", old_id);
+      console.log(old_id, new_name);
+      $.ajax({
+        type: "POST",
+        url: 'http://127.0.0.1:8000/article/exit-column/',
+        data: form,
+        processData: false,
+        contentType: false,
+        success: function(data){
+          if (data==1){
+             alert("不可以为空");
+           }else if(data==2){
+             alert("已经存在")
+           }else{
+             alert("ok")
+             location.href="http://127.0.0.1:8000/article/article-column/"
+           }
+        }
+      })
+
+    })
+
+})
+</script>
+{% endblock  %}

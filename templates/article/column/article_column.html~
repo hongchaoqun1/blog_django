@@ -1,0 +1,73 @@
+{% extends "article/base.html"  %}
+{% load staticfiles  %}
+{% block title %}{% endblock  %}
+{% block content %}
+<div>
+<p class="text-right">
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" >add column</button>
+</p>
+<table class="table table-hover">
+  <tr>
+    <td>序号</td>
+    <td>栏目名称</td>
+    <td>操作</td>
+  </tr>
+  <tr>
+    {% for col in column  %}
+  <tr>
+    <td>{{ forloop.counter  }}</td>
+    <td>{{ col.column  }}</td>
+    <td>--</td>
+  </tr>
+  {% empty %}
+  <p>太懒了, 还没有设置栏目</p>
+    {% endfor  %}
+  </tr>
+</table>
+</div>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h4 class="modal-title" id="myModalLabel">添加栏目</h4>
+      </div>
+      <div class="modal-body">
+      <input type="text" class="form-control" id="name" placeholder="请输入名称">
+      </div>
+      <div class="modal-footer">
+	<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	<button type="button" class="btn btn-primary" id="add">提交更改</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal -->
+  </div>
+{% endblock  %}
+
+{% block javascript  %}
+<script>
+  $(function(){
+  $("#add").click(function(){
+  var column_name = $("#name").val();
+  $.ajax({
+  type: "POST",
+  url: "http://10.31.155.18:8000/article/article-column/",
+  dataType: "json",
+  data: JSON.stringify({"column_name":column_name}),
+  contentType: "application/json",
+  success: function(data){
+  if (data.status){
+  alert("提交成功");
+  location.href = "http://10.31.155.18:8000/article/article-column/"  
+  }else{
+  alert("提交失败");
+  }}
+             })
+  
+  })
+  })
+
+</script>
+{% endblock  %}

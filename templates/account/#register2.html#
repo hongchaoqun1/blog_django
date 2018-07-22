@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %} Login {% endblock  %}
+
+{% block content %}
+
+<div class="row text-center vertical-middle-sm">
+  <h1>regist</h1>
+  <p>regist your username and password</p>
+
+  <!--表单 -->
+  <form class="form-horizontal" role="form" method="POST" >
+    {% csrf_token  %}
+    <div class="form-group">
+      <label for="username" class="col-md-3 control-label">姓名</label>
+      <div class="col-md-6 text-left">
+        <span class="glyphicon glyphicon-user"></span>	
+        <input type="text" class="form-control" id="firstname"
+	          placeholder="请输入名字" name="username">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email" class="col-md-3 control-label">邮箱</label>
+      <div class="col-md-6 text-left">
+	<span class="glyphicon glyphicon-user"></span>
+        <input type="email" class="form-control" id="firstname"
+	          placeholder="请输入名字" name="password">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password" class="col-md-3 control-label">密码</label>
+      <div class="col-md-6 text-left">
+	<span class="glyphicon glyphicon-user"></span>
+        <input type="password" class="form-control" id="firstname"
+	          placeholder="请输入名字">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password" class="col-md-3 control-label">确认 密码</label>
+      <div class="col-md-6 text-left">
+	<span class="glyphicon glyphicon-user"></span>
+	<input type="password" class="form-control" id="firstname"
+	       placeholder="请输入名字" naeepassword2>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="birthday" class="col-md-3 control-label">生日</label>
+      <div class="col-md-6 text-left">
+	<span class="glyphicon glyphicon-user"></span>
+        <input type="text" class="form-control" id="firstname"
+	          placeholder="请输入名字">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="phone" class="col-md-3 control-label">电话</label>
+      <div class="col-md-6 text-left">
+	<span class="glyphicon glyphicon-user"></span>
+	<input type="text" class="form-control" id="firstname"
+	       placeholder="请输入名字">
+      </div>
+    </div>
+    
+    <div class="form-group">
+    	<button type="submit" class="btn btn-default">登录</button>
+    </div>
+  </form>
+
+
+
+
+</div>
+{% endblock  %}

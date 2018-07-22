@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %} 用户信息 {% endblock  %}
+
+{% block content %}
+
+<div class="row text-center vertical-middle-sm">
+  <h1>{{ userinfo.username }}</h1>
+
+  <div class="row text-center vertical-middle-sm`">
+    <div class="row">
+      <div class="col-md-6">
+	<div class="row">
+	  <div class="col-md-4 text-right"><span>姓名</span></div>
+	  <div class="col-md-4 text-right">{{ userinfo.userinfo  }}</div>
+	</div>
+
+        <div class="row">
+	  <div class="col-md-4 text-right"><span>邮箱</span></div>
+	  <div class="col-md-4 text-right">{{ userinfo.email  }}</div>
+	</div>
+
+	<div class="row">
+	  <div class="col-md-4 text-right"><span>毕业学校</span></div>
+	  <div class="col-md-4 text-right">{{ userinfo.school  }}</div>
+	</div>
+
+	<div class="row">
+	  <div class="col-md-4 text-right"><span>公司</span></div>
+	  <div class="col-md-4 text-right">{{ userinfo.company  }}</div>
+	</div>
+
+	<div class="row">
+	  <div class="col-md-4 text-right"><span>职业</span></div>
+	  <div class="col-md-4 text-right">{{ userinfo.profession  }}</div>
+	</div>
+
+	<div class="row">
+	  <div class="col-md-4 text-right"><span>地址</span></div>
+	  <div class="col-md-4 text-right">{{ userinfo.address  }}</div>
+	</div>
+	
+	<div class="row">
+	  <div class="col-md-4 text-right"><span>职业</span></div>
+	  <div class="col-md-4 text-right">{{ userinfo.aboutme  }}</div>
+	</div>
+	
+	
+	
+      </div>
+    </div>
+  </div>
+
+
+
+
+</div>
+{% endblock  %}
