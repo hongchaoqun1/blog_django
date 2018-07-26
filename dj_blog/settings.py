@@ -79,10 +79,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': "dj_blog2",
-        'HOST': 'rm-bp15kq3103u1df435io.mysql.rds.aliyuncs.com',
+        'HOST': 'xxx',
         'PORT': 3306,
         'USER': "hongcq",
-        'PASSWORD': 'root1root1@123' 
+        'PASSWORD': 'xxx' 
     }
 }
 
@@ -131,4 +131,4 @@ STATIC_URL = '/static/'
 
 REDIS_HOST = "localhost"
 REDIS_PORT = 6379
-REDIS_DB = 0
+REDIS_DB = 1
